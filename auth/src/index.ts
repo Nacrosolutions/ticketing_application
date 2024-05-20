@@ -4,6 +4,10 @@ import {json as bodyParser} from 'body-parser';
 const app=express();
 app.use(bodyParser());
 
+app.get('/api/users/currentuser',(req,res)=>{
+    res.send('hi there')
+})
+
 
 
 
