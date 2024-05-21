@@ -5,6 +5,12 @@ const app=express();
 app.use(bodyParser());
 
 
+//Added get route handler  
+app.get('/api/users/currentuser',(req,res)=>{
+    res.send('hi there')
+})
+
+
 
 
 
