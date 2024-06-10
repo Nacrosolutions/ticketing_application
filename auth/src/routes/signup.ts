@@ -2,10 +2,11 @@
 
 
 import express,{Request,Response} from 'express';
-import {body,validationResult} from 'express-validator'
-import { RequestValidationError } from '../Errors/request-validation-error';
+import {body} from 'express-validator'
+import jwt from 'jsonwebtoken'
 import { User } from '../modals/user';
 import { BadRequestError } from '../Errors/bad-request-error';
+import { validateRequest } from '../middlewares/validate-request';
 
 
 //Defining a router from express
@@ -20,15 +21,8 @@ router.post('/api/users/signup',[
     .trim()
     .isLength({min:4,max:20})
     .withMessage('Password must be between 4 and 20 characters')
-],async (req:Request,res:Response)=>{
+],validateRequest,async (req:Request,res:Response)=>{
 
-
-
-    console.log("REQ",req.body)
-const errors=validationResult(req);
-if(!errors.isEmpty()){
-   throw new RequestValidationError(errors.array());
-}
 
 
 const {email,password}=req.body;
@@ -46,6 +40,18 @@ throw new BadRequestError('Email in Use')
     
     const user=User.build({email,password});
     await user.save();
+
+    //Generate JWT store it on session obj
+    const userJwt=jwt.sign({
+        id:user.id,
+        email:user.email
+    },process.env.JWT_KEY!)
+
+
+    req.session={
+        
+       jwt: userJwt
+    }
     console.log("USER",user)
 
     return res.status(201).send(user)
