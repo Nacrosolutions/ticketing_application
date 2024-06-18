@@ -6,8 +6,9 @@ import { currentUserRouter } from './routes/current-user';
 import { signInRouter } from './routes/signin';
 import { signOutRouter } from './routes/signout';
 import { signUpRouter } from './routes/signup';
-import { errorHandler } from './middlewares/error-handler';
-import { NotFoundError } from './Errors/not-found-error';
+
+import { errorHandler,NotFoundError } from '@nabhamsharma/common';
+
 import cookieSession from 'cookie-session';
 
 export const app=express();
