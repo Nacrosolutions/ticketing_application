@@ -5,8 +5,8 @@ import express,{Request,Response} from 'express';
 import {body} from 'express-validator'
 import jwt from 'jsonwebtoken'
 import { User } from '../modals/user';
-import { BadRequestError } from '../Errors/bad-request-error';
-import { validateRequest } from '../middlewares/validate-request';
+
+import { validateRequest,BadRequestError } from '@nabhamsharma/common';
 
 
 //Defining a router from express

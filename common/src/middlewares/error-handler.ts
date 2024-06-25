@@ -16,7 +16,7 @@ if(err instanceof CustomError) {
   return res.status(err.statusCode).send({errors:err.serializeErrors()})
 }
 
-
+console.log("ERR",err)
 
     //2 Make sure to send consiteent error message (One generic message)
     res.status(400).send({

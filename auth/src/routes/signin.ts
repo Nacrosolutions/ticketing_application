@@ -8,8 +8,9 @@ import { body } from 'express-validator';
 import { User } from '../modals/user';
 import jwt from 'jsonwebtoken'
 
-import { validateRequest } from '../middlewares/validate-request';
-import { BadRequestError } from '../Errors/bad-request-error';
+
+import { validateRequest,BadRequestError } from '@nabhamsharma/common';
+
 import { Password } from '../services/password';
 
 

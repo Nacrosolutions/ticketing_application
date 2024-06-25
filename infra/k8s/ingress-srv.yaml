@@ -20,3 +20,19 @@ spec:
                 name: auth-srv
                 port:
                   number: 3000
+          - path: /?(.*)
+            pathType: Prefix
+            backend:
+              service:
+##Coming from auth service we are sending 
+                name: tickets-srv
+                port:
+                  number: 3000
+          - path: /?(.*)
+            pathType: Prefix
+            backend:
+              service:
+##Coming from auth service we are sending 
+                name: client-srv
+                port:
+                  number: 3000
