@@ -3,12 +3,12 @@ import { app } from '../../app';
 import mongoose from 'mongoose';
 import { globalAny } from '../../test/setup';
 
-// it('returns a 404 if the ticket is not found', async () => {
-//   const id = new mongoose.Types.ObjectId().toHexString();
+it('returns a 404 if the ticket is not found', async () => {
+  const id = new mongoose.Types.ObjectId().toHexString();
 
-//   console.log(id)
-//   await request(app).get(`/api/tickets/${id}`).send().expect(404);
-// });
+  console.log(id)
+  await request(app).get(`/api/tickets/${id}`).send().expect(404);
+});
 
 it('returns the ticket if the ticket is found', async () => {
   const title = 'concert';
